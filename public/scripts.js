@@ -10,7 +10,10 @@ function renderMessage(message){
 
 }
 
-msgJoin('You joined!');
+//newUser = $('input[name=username]');
+const newUser = prompt('Qual o seu nome?')
+msgJoin('Você entrou!');
+socket.emit('newUser', newUser);
 
 function msgJoin(msg){
     $('.messages').append(`<div class="msgJoin">${msg}</div>`);
@@ -18,19 +21,19 @@ function msgJoin(msg){
 }
 
 socket.on('userConnected', function(name) {
-    msgJoin(`connected`);
+    msgJoin(`${name} entrou`);
 });
 
 socket.on('userDisconnected', function(name) {
-    msgJoin(`${name} disconnected`);
+    msgJoin(`${name} saiu`);
 });
 
-
+/*
 socket.on('previousMessages', function(messages){
     for(message of messages){
         renderMessage(message);
     }
-});
+});*/
 
 socket.on('receivedMessage', function(message){
     renderMessage(message);
@@ -39,7 +42,7 @@ socket.on('receivedMessage', function(message){
 $('#chat').submit(function(event){ //quando eu enviar a mensagem
     event.preventDefault(); //para não atualizar a página
 
-    var author = $('input[name=username]').val();
+    var author = newUser
     var message = $('input[name=message]').val();
 
     if(author.length && message.length){

@@ -69,10 +69,6 @@ html, body {
     margin: .2rem 15%;
   }
 
-  .redBorder{
-    border: 2px solid red;
-  }
-
 @media only screen and (max-width: 900px){
 
   #chat{

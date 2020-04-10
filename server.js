@@ -19,9 +19,16 @@ let messages = [];
 
 io.on('connection', socket => { //define a forma de conexão com o WebSocket
     
-    console.log(`Socket conectado ${socket.id}`);
+    //console.log(`Socket conectado ${socket.id}`);
 
-    socket.emit('previousMessages', messages); //emite o evento com as mensagens
+    socket.on('newUser', name => {
+        console.log('newuser: ' + name);
+        users[socket.id] = name
+        socket.broadcast.emit('userConnected', name);
+    });
+
+
+    //socket.emit('previousMessages', messages); //emite o evento com as mensagens
 
     socket.on('sendMessage', data => { //ao receber a mensagem
         messages.push(data);
