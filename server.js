@@ -43,4 +43,4 @@ io.on('connection', socket => { //define a forma de conexão com o WebSocket
 });
 
 
-server.listen(3000); //ouve a porta 3000
+server.listen(process.env.PORT || 3000); //ouve a porta 3000
