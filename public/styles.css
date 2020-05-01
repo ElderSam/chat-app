@@ -29,7 +29,7 @@ html, body {
   #divSend{
     width: 100%;
     background-color: lightcyan;
-    padding-left: 1rem;
+    
   }
   
   .messages { /* div onde terá todas as mensagens */
@@ -43,8 +43,7 @@ html, body {
   }
 
   .message{
-
-    max-width: 50%;
+    max-width: 60%;
     padding: 5px;
     margin: 2px;
 
@@ -257,6 +256,14 @@ body {
 @media only screen and (max-width: 900px){
 
   #chat{
-    padding: 0 1rem;
+    padding: 0 0rem;
+  }
+
+  button {
+    width: 25%;
+  }
+
+  input {
+    width: 75%;
   }
 }

@@ -1,4 +1,3 @@
-
 var socket = io('https://chat-app2-node.herokuapp.com/'); //conecta com o Socket do backend, ouve essa conexão
 //var socket = io('http://localhost:3000');   
 
@@ -17,23 +16,24 @@ function renderMessage(message, type){
 
     // Formata a hora
     var str_hora = hora + ':' + min + ':' + seg;
-
+    
+    
     if(type == 'received'){
         align = ''
-        float = ''      
+        float = '' 
+        author = message.author
         
     }else{
         align = 'align-right'
         float = 'float-right'
-        message.author = 'eu'   
+        author = 'eu'   
     }
 
     $('.messages').append(
         `<li class="clearfix">
             <div class="message-data ${align}">
-              <span class="message-data-time" >${str_hora}, Hoje</span> &nbsp; &nbsp;
-              <span class="message-data-name" ><strong>${message.author}</strong> </span> <i class="fa fa-circle me"></i>
-              
+                <span class="message-data-name" ><strong>${author}</strong> </span> <i class="fa fa-circle me"></i>      
+                <span class="message-data-time" >${str_hora}</span> &nbsp; &nbsp;             
             </div>
             <div class="message ${float} ${type}">
             ${message.message}
