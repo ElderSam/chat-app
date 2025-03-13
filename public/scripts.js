@@ -1,4 +1,4 @@
-var socket = io('https://chat-app2-node.herokuapp.com/'); //conecta com o Socket do backend, ouve essa conexão
+var socket = io('https://chat-app2-node-a9c1feced251.herokuapp.com/'); //conecta com o Socket do backend, ouve essa conexão
 //var socket = io('http://localhost:3000');   
 
 var objDiv = document.querySelector(".messages");
