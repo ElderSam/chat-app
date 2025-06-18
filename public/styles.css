@@ -8,6 +8,10 @@ html, body {
     box-sizing: border-box;
   }
   
+  body {
+    background-color: #84b454;
+  }
+
   header{
     padding: .7rem 0;
     text-align: center;
@@ -16,20 +20,19 @@ html, body {
   }
 
   #chat {
-    height: 93.4%;
+    height: 93.4vh;
     padding: 0 20rem;
     margin-top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #84b454;
   }
 
   #divSend{
     width: 100%;
     background-color: lightcyan;
-    
+    max-width: 700px;
   }
   
   .messages { /* div onde terá todas as mensagens */
@@ -40,6 +43,7 @@ html, body {
     padding: 10px;
     background-color: #f4fff3;
     overflow-y: auto;
+    max-width: 700px;
   }
 
   .message{
