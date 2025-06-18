@@ -120,6 +120,7 @@ $('#chat').submit(function(event){ //quando eu enviar a mensagem
         renderMessage(messageObject, 'send') //mostra a mensagem na tela
         
         response = socket.emit('sendMessage', messageObject); //envia a mensagem
+
         if(!response.connected){
             console.warn(language.errorConnectionLost)
             alert(language.errorConnectionLost)
