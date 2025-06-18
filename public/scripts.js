@@ -1,7 +1,32 @@
-var socket = io('https://chat-app-socket-2025.netlify.app/'); //conecta com o Socket do backend, ouve essa conexão
-//var socket = io('http://localhost:3000');   
+//conecta com o Socket do backend, ouve essa conexão
+var socket = io('http://localhost:3000');   
+isConnected();
+
+const messages = {
+    portuguese: {
+        question1: "Qual é o seu nome?",
+        youJoined: 'Você entrou',
+        joined: 'entrou',
+        left: 'saiu',
+        me: 'Eu',
+        writeAMessage: 'Escreva uma mensagem!',
+        errorConnectionLost: 'Conexão perdida, tente novamente mais tarde.'
+    },
+    english: {
+        question1: "What is your name?",
+        youJoined: 'You joined',
+        joined: 'joined',
+        left: 'left',
+        me: 'Me',
+        writeAMessage: 'Write a message!',
+        errorConnectionLost: 'Connection lost, please try again later.'
+    }
+}
+
+const language = (navigator.language ==='pt-BR') ? messages.portuguese : messages.english; //muda o idioma para português, se quiser mudar para inglês, basta trocar para messages.english
 
 var objDiv = document.querySelector(".messages");
+console.log('objDiv.baseURI: ', objDiv.baseURI);
 
 function renderMessage(message, type){
     //$('.messages').append(`<div class="message ${type}"><strong> ${message.author} </strong>: ${message.message} </div>`)
@@ -26,7 +51,7 @@ function renderMessage(message, type){
     }else{
         align = 'align-right'
         float = 'float-right'
-        author = 'eu'   
+        author = language.me
     }
 
     $('.messages').append(
@@ -44,22 +69,29 @@ function renderMessage(message, type){
 
 }
 
+function isConnected(){
+    console.log('socket.connected', socket.connected); //verifica se está conectado
+}
+
 //newUser = $('input[name=username]');
-const newUser = prompt('Qual o seu nome?')
-msgJoin('Você entrou!');
+const newUser = prompt(language.question1)
+console.log({ newUser })
+
+msgJoin(`${language.youJoined}!`);
 socket.emit('newUser', newUser);
 
 function msgJoin(msg){
     $('.messages').append(`<div class="msgJoin">${msg}</div>`);
-    
 }
 
 socket.on('userConnected', function(name) {
-    msgJoin(`${name} entrou`);
+    msgJoin(`${name} ${language.joined}`);
+    isConnected();
 });
 
 socket.on('userDisconnected', function(name) {
-    msgJoin(`${name} saiu`);
+    msgJoin(`${name} ${language.left}`);
+    isConnected();
 });
 
 /*
@@ -89,18 +121,18 @@ $('#chat').submit(function(event){ //quando eu enviar a mensagem
         
         response = socket.emit('sendMessage', messageObject); //envia a mensagem
         if(!response.connected){
-            console.warn('ERRO! Conexão perdida')
-            alert('ERRO! Conexão Perdida')
-        }   
+            console.warn(language.errorConnectionLost)
+            alert(language.errorConnectionLost)
+        }
 
         $('input[name=username]').hide();
         $('input[name=message]').val(''); //limpa o input de mensagem
 
     }else if(!author.length){
-        alert('Informe um nome de usuário!');
+        alert(language.writeAMessage);
         $('input[name=username]').addClass('redBorder').focus();
 
     }else{
-        alert('Escreva uma mensagem!');
+        alert(language.writeAMessage);
     }
 });
