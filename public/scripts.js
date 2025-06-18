@@ -1,5 +1,6 @@
 //conecta com o Socket do backend, ouve essa conexão
-var socket = io('http://localhost:3000');   
+var socket = io(window.location.href);
+  
 isConnected();
 
 const messages = {
