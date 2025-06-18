@@ -23,7 +23,7 @@ html, body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: chartreuse;
+    background-color: #84b454;
   }
 
   #divSend{
@@ -38,7 +38,7 @@ html, body {
     margin-bottom: 5px;
     border: 1px solid #ddd;
     padding: 10px;
-    background-color: white;
+    background-color: #f4fff3;
     overflow-y: auto;
   }
 
@@ -61,7 +61,7 @@ html, body {
     width: 15%;
     height: 50px;
     font-size: 16px;
-    background: #069;
+    background: #00aaff;
     text-align: center;
     line-height: 50px;
     font-weight: bold;
@@ -71,11 +71,15 @@ html, body {
     text-transform: uppercase;
     border: none;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   button:hover {
     
-    background-color: blue;
+    background-color: #008ed4;
     border-radius: 5px;
   
   }
