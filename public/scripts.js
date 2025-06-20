@@ -75,7 +75,7 @@ function isConnected(){
 }
 
 //newUser = $('input[name=username]');
-const newUser = prompt(language.question1)
+const newUser = prompt(language.question1) || 'Guest';
 console.log({ newUser })
 
 msgJoin(`${language.youJoined}!`);
